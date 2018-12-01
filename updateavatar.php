@@ -3,7 +3,7 @@
 	
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (isset($_FILES['avatar'])) {
-			$errors = [];
+			$error = null;
 			$path = 'avatars/';
 			$extensions = ['jpg', 'jpeg', 'png', 'gif'];
 
@@ -16,14 +16,14 @@
 			$file = $path . $_POST['username'].'-'.$file_name;
 
 			if (!in_array($file_ext, $extensions)) {
-				$errors[] = 'Extension not allowed: ' . $file_name . ' ' . $file_type;
+				$error = 'Extension not allowed: ' . $file_name . ' ' . $file_type;
 			}
 
-			if ($file_size > 2097152) {
-				$errors[] = 'File size exceeds limit: ' . $file_name . ' ' . $file_type;
+			if ($file_size > 10240000) {
+				$error = 'File size exceeds limit (10M): ' . $file_name . ' ' . $file_type;
 			}
 
-			if (empty($errors)) {
+			if ($error != null) {
 				move_uploaded_file($file_tmp, $file);
 				try {
 					$conn = new PDO("mysql:host=g3v9lgqa8h5nq05o.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=r003w8gzd91dlly1", "nf7cnfvkejjel4pb", "dq9i9x5nxkgebkup");
@@ -45,6 +45,9 @@
 					}
 			}
 
-			if ($errors) print_r($errors);
+			if ($error != null) {
+				$responseError = (object) ['error' => $error];
+				echo json_encode($responseError);
+			}
 		}
 	}
