@@ -7,6 +7,7 @@ try {
 
 //$query = "SELECT * FROM users";
 
+$username = $_POST['username'];
 $name = $_POST['name'];
 $price = $_POST['price'];
 $address = $_POST['address'];
@@ -15,7 +16,7 @@ $longitude = $_POST['longitude'];
 $place_id = $_POST['place_id'];
 $photo_references = $_POST['photo_references'];
 
-$query = "INSERT INTO histories (name, price, address, latitude, longitude, place_id, photo_references) VALUES ('$name', '$price', '$address', '$latitude', '$longitude', '$place_id', '$photo_references')";
+$query = "INSERT INTO histories (name, price, address, latitude, longitude, place_id, photo_references, username) VALUES ('$name', '$price', '$address', '$latitude', '$longitude', '$place_id', '$photo_references', '$username')";
 
 $result = $conn->query($query);
 if($result){
