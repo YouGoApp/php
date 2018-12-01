@@ -7,17 +7,20 @@ try {
 
 //$query = "SELECT * FROM users";
 
-$username = $_POST['username'];
-$password = $_POST['password'];
-$email = $_POST['email'];
-$city = $_POST['city'];
+$name = $_POST['name'];
+$price = $_POST['price'];
+$address = $_POST['address'];
+$latitude = $_POST['latitude'];
+$longitude = $_POST['longitude'];
+$place_id = $_POST['place_id'];
+$photo_references = $_POST['photo_references'];
 
-$query = "INSERT INTO users (username, password, email, city) VALUES ('$username', '$password', '$email', '$city')";
+$query = "INSERT INTO histories (name, price, address, latitude, longitude, place_id, photo_references) VALUES ('$name', '$price', '$address', '$latitude', '$longitude', '$place_id', '$photo_references')";
 
 $result = $conn->query($query);
 if($result){
-  $users = $result->fetchAll();
-  echo json_encode($users);
+  $histories = $result->fetchAll();
+  echo json_encode($histories);
 } else {
   echo json_encode(false);
 }
