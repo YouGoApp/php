@@ -38,7 +38,8 @@
 					
 					$result = $conn->query($query);
 					if($result){
-					  echo $avatar;
+						$response = (object) ['avatar' => $avatar];
+						echo json_encode($response);
 					} else {
 					  echo json_encode(false);
 					}
