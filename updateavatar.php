@@ -8,7 +8,7 @@
 			$extensions = ['jpg', 'jpeg', 'png', 'gif'];
 
 			$all_files = count($_FILES['avatar']['tmp_name']);
-
+echo $all_files;exit;
 			for ($i = 0; $i < $all_files; $i++) {  
 				$file_name = $_FILES['avatar']['name'][$i];
 				$file_tmp = $_FILES['avatar']['tmp_name'][$i];
