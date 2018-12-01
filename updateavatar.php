@@ -2,7 +2,7 @@
 	$response = 'Fail';
 	
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		if (isset($_FILES['files'])) {
+		if (isset($_FILES['avatar'])) {
 			$errors = [];
 			$path = 'avatars/';
 			$extensions = ['jpg', 'jpeg', 'png', 'gif'];
@@ -52,4 +52,3 @@
 			if ($errors) print_r($errors);
 		}
 	}
-?>
