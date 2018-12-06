@@ -7,7 +7,7 @@ try {
 
 $username = $_POST['username'];
 
-$query = "SELECT * FROM histories WHERE username='$username'";
+$query = "SELECT * FROM histories WHERE username='$username' ORDER BY id DESC";
 
 $result = $conn->query($query);
 if($result){
